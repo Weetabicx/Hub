@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from WeatherApp import urls as WeatherApp_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('weather/', include('weather.urls'))
+    path('weather/', include(WeatherApp_urls)),
+    path('', include('HubApp.urls'))
 ]

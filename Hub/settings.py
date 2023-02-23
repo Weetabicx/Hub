@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+import datetime
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+AUTH_USER_MODEL = "HubApp.User"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -24,6 +25,19 @@ SECRET_KEY = 'django-insecure-9+)el+@8nh$i1z0u3u59m(peo$!jb&)$jwlr6_w=sazp5reka4
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+# JSON Web Token extension config for Django Rest Frameowrk
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+}
+
 
 ALLOWED_HOSTS = []
 
@@ -37,7 +51,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'weather',
+    'rest_framework',
+    'WeatherApp',
+    'HubApp',
 ]
 
 MIDDLEWARE = [
