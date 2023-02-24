@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from HubApp.serializers import RegisterSerializer,LoginSerializer,LogoutSerializer
+from uuid6 import uuid7
 
 # Create your views here.
 

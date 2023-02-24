@@ -3,7 +3,7 @@ from HubApp.models import User
 from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
-
+from uuid6 import uuid7
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     class Meta:
@@ -18,7 +18,8 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
     
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+
+        return User.objects.create_user(**validated_data, uuid=uuid7())
     
 class LoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6,write_only=True)
