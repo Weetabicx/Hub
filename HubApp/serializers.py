@@ -4,6 +4,7 @@ from django.contrib import auth
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from uuid6 import uuid7
+
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     class Meta:
@@ -19,7 +20,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
 
-        return User.objects.create_user(**validated_data, uuid=uuid7())
+        return User.objects.create_user(**validated_data, id=uuid7())
     
 class LoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=68, min_length=6,write_only=True)
@@ -40,6 +41,7 @@ class LoginSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         username = attrs.get('username', '')
         password = attrs.get('password', '')
+        print(username,password)
         user = auth.authenticate(username=username,password=password)
 
         if not user:

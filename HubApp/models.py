@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 class User(AbstractUser):
 
-    uuid = models.CharField(max_length=36, unique=True, primary_key=True)
+    id = models.CharField(max_length=36, unique=True, primary_key=True)
     rank = models.IntegerField(default=2)
 
     def __str__(self) -> str:
