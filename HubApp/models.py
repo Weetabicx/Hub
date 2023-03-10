@@ -7,6 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class User(AbstractUser):
 
     id = models.CharField(max_length=36, unique=True, primary_key=True)
+    bio = models.CharField(max_length=1024)
     rank = models.IntegerField(default=2)
     costing = models.BooleanField(default=False)
     spotify = models.CharField(max_length=255, null=True)

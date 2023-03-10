@@ -1,9 +1,7 @@
-from rest_framework import generics,status,views,permissions
+from rest_framework import generics,status,permissions
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from HubApp.serializers import RegisterSerializer,LoginSerializer,LogoutSerializer
-from uuid6 import uuid7
+from HubApp.serializers import *
+from HubApp.models import User
 
 # Create your views here.
 
@@ -34,4 +32,14 @@ class LogoutAPIView(generics.GenericAPIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 class UserAPIView(generics.GenericAPIView):
-    pass
+    serializer_class = LogoutSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        return Response(request.data, status=status.HTTP_200_OK)
+    
+    def get(self, request):
+        user = request.data['user']
+        user = User.objects.get(username=user)
+        print(user)
+        return Response(UserSerializer(user).data, status=status.HTTP_200_OK)

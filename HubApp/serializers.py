@@ -41,7 +41,7 @@ class LoginSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         username = attrs.get('username', '')
         password = attrs.get('password', '')
-        print(username,password)
+
         user = auth.authenticate(username=username,password=password)
 
         if not user:
@@ -64,3 +64,8 @@ class LogoutSerializer(serializers.Serializer):
             RefreshToken(self.token).blacklist()
         except TokenError:
             self.fail('bad_token')
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['bio', 'username', 'is_superuser', 'first_name', 'last_name', 'email', 'is_active', 'date_joined', 'rank', 'id', 'costing', 'spotify']
