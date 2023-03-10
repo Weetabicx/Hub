@@ -68,4 +68,4 @@ class LogoutSerializer(serializers.Serializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['bio', 'username', 'is_superuser', 'first_name', 'last_name', 'email', 'is_active', 'date_joined', 'rank', 'id', 'costing', 'spotify']
+        fields = ['bio', 'username', 'is_superuser', 'first_name', 'last_name', 'email', 'is_active', 'date_joined', 'rank', 'costing', 'spotify']

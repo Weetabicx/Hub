@@ -38,8 +38,8 @@ class UserAPIView(generics.GenericAPIView):
     def post(self, request):
         return Response(request.data, status=status.HTTP_200_OK)
     
-    def get(self, request):
-        user = request.data['user']
-        user = User.objects.get(username=user)
+    def get(self, request, username):
+        print(username)
+        user = User.objects.get(username=username)
         print(user)
         return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
