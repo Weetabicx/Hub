@@ -19,5 +19,6 @@ from WeatherApp import urls as WeatherApp_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('weather/', include(WeatherApp_urls)),
-    path('', include('HubApp.urls'))
+    path('', include('HubApp.urls')),
+    path('spotify/', include('SpotifyApp.urls'))
 ]

@@ -1,4 +1,5 @@
 from rest_framework import generics,status,permissions
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from HubApp.serializers import *
 from HubApp.models import User
@@ -31,7 +32,7 @@ class LogoutAPIView(generics.GenericAPIView):
         serializer.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UserAPIView(generics.GenericAPIView):
+class UserAPIView(APIView):
     serializer_class = LogoutSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
